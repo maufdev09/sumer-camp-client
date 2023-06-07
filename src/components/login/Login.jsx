@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -48,11 +50,22 @@ const Login = () => {
               </a>
             </label>
           </div>
+          <p className="pb-5">
+            Don't Have an Account?
+            <Link className="link text-red-300" to="/register">
+              Register
+            </Link>
+          </p>
           <div className="form-control mt-6">
             <button type="submit" className="btn  bg-red-200">
               Login
             </button>
           </div>
+          <div className="divider">Or</div>
+          <button className="btn bg-red-200">
+            {" "}
+            <FaGoogle></FaGoogle> Sign with Google
+          </button>
         </div>
       </div>
     </form>
