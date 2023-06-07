@@ -7,7 +7,8 @@ const Register = () => {
     formState: { errors },
     watch,
   } = useForm();
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = (values) => {};
+
   const password = watch("password");
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -29,6 +30,7 @@ const Register = () => {
             />
             {errors?.name && errors?.name.message}
           </div>
+          {/* email  */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -43,6 +45,36 @@ const Register = () => {
             />
             {errors?.email && errors?.email.message}
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Image URL</span>
+            </label>
+            <input
+              type="text"
+              placeholder="ImgURL"
+              className="input input-bordered"
+              {...register("imgurl", {
+                required: "Required",
+              })}
+            />
+            {errors?.imgurl && errors?.imgurl.message}
+          </div>
+
+          {/* upload image */}
+          {/* <div className="form-control">
+            <label className="label-text pb-2 ">Upload Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              className="file-input w-full max-w-xs"
+              {...register("image", {
+                required: "Required",
+              })}
+            />
+            {errors?.image && errors?.image.message}
+          </div> */}
+
+          {/* password  */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
