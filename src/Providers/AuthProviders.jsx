@@ -1,8 +1,11 @@
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
-  updateCurrentUser,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -10,6 +13,7 @@ import { createContext, useEffect, useState } from "react";
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
 
+const Provider = new GoogleAuthProvider();
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,6 +33,11 @@ const AuthProviders = ({ children }) => {
         console.log("Error creating user", error);
       });
   };
+  // Login
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   // ovserver
   useEffect(() => {
@@ -41,11 +50,26 @@ const AuthProviders = ({ children }) => {
     };
   }, []);
 
+  // Login with google
+  const signInGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, Provider);
+  };
+
+  // logout
+  const logout = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
   const authInfo = {
     user,
     createUser,
     setLoading,
     loading,
+    signIn,
+    logout,
+    signInGoogle,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

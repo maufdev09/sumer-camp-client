@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import blackimg from "../../assets/logo/SportsPro Academy-logos_black.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
+import { toast } from "react-hot-toast";
+import { FaUserCircle } from "react-icons/fa";
 
 {
   /* <li tabIndex={0}>
@@ -18,6 +22,14 @@ import blackimg from "../../assets/logo/SportsPro Academy-logos_black.png";
 }
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logout()
+      .then(toast.success("logout successfully"))
+      .catch((err) => console.log(err));
+  };
+
   const navoption = (
     <>
       <li>
@@ -29,9 +41,11 @@ const Navbar = () => {
       <li>
         <Link>Clases</Link>
       </li>
-      <li>
-        <Link>Dashboard</Link>
-      </li>
+      {user && (
+        <li>
+          <Link>Dashboard</Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -72,9 +86,27 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login" className="btn bg-red-200">
-            login
-          </Link>
+          {user && (
+            <div
+              className="w-8 mx-5 tooltip tooltip-left"
+              data-tip={user.displayName}
+            >
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="" className="rounded-full " />
+              ) : (
+                <FaUserCircle className=" text-4xl max-sm:text-2xl mx-3"></FaUserCircle>
+              )}
+            </div>
+          )}
+          {user ? (
+            <button className="btn bg-red-200" onClick={handleLogOut}>
+              LogOUT
+            </button>
+          ) : (
+            <Link to="/login" className="btn bg-red-200">
+              login
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -1,13 +1,12 @@
-import { useForm, useWatch } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
-import { toast } from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, upadateProfile, setLoading, user } =
-    useContext(AuthContext);
+  const { createUser, user, signInGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -17,17 +16,28 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const { email, imgurl, name, password } = data;
-    console.log(name);
     createUser(email, password, name, imgurl).then((res) => {
       const newUser = res?.user;
       console.log(`new user${newUser}`);
       console.log(res);
+      navigate("/");
     });
   };
   console.log(user);
   const password = watch("password");
+
+  const handleGooglelogin = () => {
+    signInGoogle()
+      .then((res) => {
+        const loggedUser = res?.user;
+        console.log(loggedUser);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="card flex-shrink-0 w-full mx-auto my-6 max-w-sm shadow-2xl bg-base-100 ">
@@ -146,7 +156,7 @@ const Register = () => {
             </button>
           </div>
           <div className="divider">Or</div>
-          <button className="btn bg-red-200">
+          <button className="btn bg-red-200" onClick={handleGooglelogin}>
             {" "}
             <FaGoogle></FaGoogle> Sign with Google
           </button>
