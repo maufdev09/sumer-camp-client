@@ -1,0 +1,48 @@
+{
+    "sports": [
+        {
+            "id": 1,
+            "name": "Football Class",
+            "description": "Join our football Class and learn the skills and techniques to become a professional football player.",
+            "instructor": "John Smith",
+            "location": "123 Main Street",
+            "contact": "football@example.com",
+            "image": "football.jpg",
+            "seatsAvailable": 20,
+            "price": 100
+        },
+        {
+            "id": 2,
+            "name": "Basketball Class",
+            "description": "Improve your basketball skills with our experienced coaches and take your game to the next level.",
+            "instructor": "Sarah Johnson",
+            "location": "456 Elm Street",
+            "contact": "basketball@example.com",
+            "image": "basketball.jpg",
+            "seatsAvailable": 15,
+            "price": 80
+        },
+        {
+            "id": 3,
+            "name": "Tennis Class",
+            "description": "Learn the fundamentals of tennis and enhance your technique through our comprehensive training programs.",
+            "instructor": "Michael Davis",
+            "location": "789 Oak Street",
+            "contact": "tennis@example.com",
+            "image": "tennis.jpg",
+            "seatsAvailable": 10,
+            "price": 120
+        },
+        {
+            "id": 4,
+            "name": "Swimming Class",
+            "description": "Dive into our swimming Class and become a skilled swimmer under the guidance of our certified instructors.",
+            "instructor": "Emily Wilson",
+            "location": "321 Pine Street",
+            "contact": "swimming@example.com",
+            "image": "swimming.jpg",
+            "seatsAvailable": 12,
+            "price": 90
+        }
+    ]
+}
