@@ -38,6 +38,25 @@ const Login = () => {
       .then((res) => {
         const loggedUser = res?.user;
         console.log(loggedUser);
+        const savedUser = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          role: "student",
+        };
+
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success(`Hello! ${loggedUser.email}! WelCome`);
+            }
+          });
         navigate(from, { replace: true });
       })
       .catch((err) => {

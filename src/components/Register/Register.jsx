@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const { createUser, user, signInGoogle } = useContext(AuthContext);
@@ -17,11 +18,26 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const { email, imgurl, name, password } = data;
-    createUser(email, password, name, imgurl).then((res) => {
-      const newUser = res?.user;
-      console.log(`new user${newUser}`);
-      console.log(res);
-      navigate("/");
+    createUser(email, password, name, imgurl).then(() => {
+      const savedUser = {
+        name: name,
+        email: email,
+        role: "student",
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(savedUser),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            toast.success(`Hello! ${email}! WelCome`);
+            navigate("/");
+          }
+        });
     });
   };
   console.log(user);

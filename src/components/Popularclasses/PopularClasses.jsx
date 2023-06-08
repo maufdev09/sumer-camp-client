@@ -9,12 +9,9 @@ const PopularClasses = () => {
       .then((data) => setSports(data));
   }, []);
 
-  console.log(sports);
-
   const sortedSports = Array.from(sports).sort(
     (a, b) => b.seatsAvailable - a.seatsAvailable
   );
-  console.log(sortedSports);
 
   return (
     <div className="">
