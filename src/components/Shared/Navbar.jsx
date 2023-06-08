@@ -33,7 +33,7 @@ const Navbar = () => {
   const navoption = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
         <Link>Instructors</Link>
@@ -43,7 +43,7 @@ const Navbar = () => {
       </li>
       {user && (
         <li>
-          <Link>Dashboard</Link>
+          <Link to="dashboard">Dashboard</Link>
         </li>
       )}
     </>
