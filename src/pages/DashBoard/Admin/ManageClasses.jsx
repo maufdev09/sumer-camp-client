@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import FeddbackModal from "./FeddbackModal";
 import { useState } from "react";
-import { data } from "autoprefixer";
+import { toast } from "react-hot-toast";
 
 const ManageClasses = () => {
   const [selectedClass, setSelectedClass] = useState(null);
@@ -16,8 +16,25 @@ const ManageClasses = () => {
   };
 
   const handleFeedbackUpdate = (id, feedback, reset) => {
-    console.log(id, feedback);
-    reset();
+    const cls = {
+      feedback,
+    };
+    fetch(`http://localhost:5000/update-admin-feedback/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cls),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("feed back send success fully");
+          reset();
+          refetch();
+        }
+      });
   };
 
   return (
