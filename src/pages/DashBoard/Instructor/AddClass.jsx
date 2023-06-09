@@ -1,8 +1,11 @@
 import { toast } from "react-hot-toast";
-import SectionTitle from "../../../components/sectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 const AddClass = () => {
+  const { user } = useContext(AuthContext);
+
   const {
     handleSubmit,
     register,
@@ -107,7 +110,7 @@ const AddClass = () => {
             </label>
             <input
               type="text"
-              placeholder="instructorName"
+              value={user?.displayName}
               className="input input-bordered"
               {...register("instructorName", {
                 required: "Required",
@@ -122,7 +125,7 @@ const AddClass = () => {
             </label>
             <input
               type="email"
-              placeholder="instructorEmail"
+              value={user?.email}
               className="input input-bordered"
               {...register("instructorEmail", {
                 required: "Required",

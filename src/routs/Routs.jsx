@@ -50,10 +50,7 @@ export const router = createBrowserRouter([
         path: "my-class",
         element: <MyClass></MyClass>,
       },
-      {
-        path: "my-class",
-        element: <MyClass></MyClass>,
-      },
+
       {
         path: "enrolled-class",
         element: <EnrolledClass></EnrolledClass>,
