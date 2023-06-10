@@ -14,11 +14,40 @@ const Classes = () => {
   });
   console.log(classes);
 
-  const handleSelectClass = () => {
+  const handleSelectClass = (classItem) => {
     if (!user) {
-      toast.error("please login first then select");
+      toast.error("please login first then select Class");
       return;
     }
+
+    const classItemId = classItem._id;
+    delete classItem._id;
+    delete classItem.feedback;
+
+    const selectedClassItem = {
+      ...classItem,
+      classItemId,
+      selectedBy: user?.email,
+      paymentStatus: "",
+      paymentDate: "",
+    };
+    console.log(selectedClassItem);
+
+    fetch("http://localhost:5000/selected-classitem", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(selectedClassItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success(`Class added in dashboard`);
+        }
+        toast.error(`item already added in dashboard`);
+      })
+      .catch((err) => toast.error(err.message));
   };
   return (
     <div>
@@ -54,7 +83,7 @@ const Classes = () => {
                 </div>
                 <div className="card-actions justify-end">
                   <button
-                    onClick={handleSelectClass}
+                    onClick={() => handleSelectClass(classItem)}
                     disabled={parseInt(classItem.availableSeats) === 0}
                     // TODO: Logged in as admin/instructor DISABLE
                     className="btn bg-slate-900 text-white "
