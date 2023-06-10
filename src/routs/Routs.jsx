@@ -10,6 +10,7 @@ import AddClass from "../pages/DashBoard/Instructor/AddClass";
 import MyClass from "../pages/DashBoard/Instructor/MyClass";
 import EnrolledClass from "../pages/DashBoard/Student/EnrolledClass";
 import SelectedClass from "../pages/DashBoard/Student/SelectedClass";
+import Classes from "../pages/Home/Classes";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "classes",
+        element: <Classes></Classes>,
       },
     ],
   },

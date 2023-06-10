@@ -39,7 +39,7 @@ const Navbar = () => {
         <Link>Instructors</Link>
       </li>
       <li>
-        <Link>Clases</Link>
+        <Link to="classes">Clases</Link>
       </li>
       {user && (
         <li>
