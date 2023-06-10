@@ -37,6 +37,49 @@ const ManageClasses = () => {
       });
   };
 
+  // handleApprove
+  const handleApprove = (id) => {
+    const cls = {
+      status: "approve",
+    };
+    fetch(`http://localhost:5000/update-status/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cls),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success(" approve successfully");
+          refetch();
+        }
+      });
+  };
+
+  const handledeny = (id) => {
+    const cls = {
+      status: "deny",
+    };
+    fetch(`http://localhost:5000/update-status/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cls),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("deny successfully");
+          refetch();
+        }
+      });
+  };
+
   return (
     <div
       className=" container mx-auto p-4
@@ -63,20 +106,22 @@ const ManageClasses = () => {
           </div>
           <div className="flex flex-col gap-4">
             <button
+              onClick={() => handleApprove(classItem._id)}
               disabled={classItem.status !== "pending"}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+              className="bg-blue-500 hover:bg-blue-700 btn text-white font-bold py-2 px-4 rounded mr-2"
             >
               Approve
             </button>
             <button
+              onClick={() => handledeny(classItem._id)}
               disabled={classItem.status !== "pending"}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+              className="bg-red-500 hover:bg-red-700 btn text-white font-bold py-2 px-4 rounded mr-2"
             >
               Deny
             </button>
             <button
               onClick={() => modalData(classItem)}
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2"
+              className="bg-gray-500 hover:bg-gray-700 btn text-white font-bold py-2 px-4 rounded mr-2"
             >
               send Feedback
             </button>
