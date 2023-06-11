@@ -13,7 +13,6 @@ const SelectedClass = () => {
     );
     return res.json();
   });
-  console.log(classes);
 
   const handledlt = (id) => {
     fetch(`http://localhost:5000/dlt-selected-classes/${id}`, {

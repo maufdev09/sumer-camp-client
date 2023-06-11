@@ -3,9 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
 import "./CheckOutForm.css";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutFrom = ({ classesitem }) => {
   const price = classesitem?.price;
+  console.log(classesitem);
   const { user } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
@@ -13,6 +15,7 @@ const CheckOutFrom = ({ classesitem }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -76,6 +79,9 @@ const CheckOutFrom = ({ classesitem }) => {
         selectedClassId: classesitem?._id,
         date: new Date(),
         image: classesitem?.imgURL,
+        className: classesitem?.className,
+        instructorName: classesitem?.instructorName,
+        instructorEmail: classesitem?.instructorEmail,
         totalEnrolledStudent: classesitem?.totalEnrolledStudent,
         availableSeats: classesitem?.availableSeats,
       };
@@ -91,6 +97,7 @@ const CheckOutFrom = ({ classesitem }) => {
             data.insertresult.insertedId &&
             data.deleteResult.deletedCount > 0
           ) {
+            navigate("/dashboard/selected-class");
             toast.success(
               "your payment is successfully done  and this item will deleted from your selected class"
             );
@@ -132,7 +139,9 @@ const CheckOutFrom = ({ classesitem }) => {
       {transactionId && (
         <p className="font-bold text-center">
           Your payment successfully done. Your transaction id is:{" "}
-          <span className="text-green-600 text-center">{transactionId}</span>
+          <span className="text-green-600 w-2/3 text-center">
+            {transactionId}
+          </span>
         </p>
       )}
     </>
