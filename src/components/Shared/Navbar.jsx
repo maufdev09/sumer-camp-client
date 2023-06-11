@@ -39,11 +39,11 @@ const Navbar = () => {
         <Link>Instructors</Link>
       </li>
       <li>
-        <Link to="classes">Clases</Link>
+        <Link to="/classes">Clases</Link>
       </li>
       {user && (
         <li>
-          <Link to="dashboard">Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
       )}
     </>

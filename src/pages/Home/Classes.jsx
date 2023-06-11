@@ -9,7 +9,7 @@ const Classes = () => {
   const { user, logout } = useContext(AuthContext);
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
-    const res = await fetch(`http://localhost:5000/get-classes`);
+    const res = await fetch(`http://localhost:5000/get-approve-classes`);
     return res.json();
   });
   console.log(classes);

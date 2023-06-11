@@ -11,6 +11,7 @@ import MyClass from "../pages/DashBoard/Instructor/MyClass";
 import EnrolledClass from "../pages/DashBoard/Student/EnrolledClass";
 import SelectedClass from "../pages/DashBoard/Student/SelectedClass";
 import Classes from "../pages/Home/Classes";
+import Payment from "../pages/DashBoard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <DashBoard></DashBoard>,
     children: [
       {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "selected-class",
         element: <SelectedClass></SelectedClass>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
     ],
   },

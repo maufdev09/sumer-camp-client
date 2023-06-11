@@ -42,7 +42,7 @@ const AddClass = () => {
             instructorName,
             instructorEmail,
             price: parseFloat(price),
-            availableSeats,
+            availableSeats: parseInt(availableSeats),
             status: "pending",
             feedback: "",
             totalEnrolledStudent: 0,
