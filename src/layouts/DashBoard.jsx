@@ -9,7 +9,7 @@ const DashBoard = () => {
       <Navbar></Navbar>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center ">
           {/* Page content here */}
           <Outlet></Outlet>
           <label
@@ -41,6 +41,9 @@ const DashBoard = () => {
             </li>
             <li>
               <Link to="selected-class">Selected Class</Link>
+            </li>
+            <li>
+              <Link to="payment-history">Payment History</Link>
             </li>
           </ul>
         </div>

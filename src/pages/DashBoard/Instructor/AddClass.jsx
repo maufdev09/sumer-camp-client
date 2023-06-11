@@ -70,10 +70,10 @@ const AddClass = () => {
   };
 
   return (
-    <div className="w-10/12 my-5 ">
+    <div className="w-full my-5 mx-auto ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className="text-5xl font-bold text-center pt-5 ">Add a Class!</h1>
-        <div className="grid gap-4">
+        <div className="">
           <div className="form-control col-span-4">
             <label className="label">
               <span className="label-text">Class Name</span>
@@ -104,7 +104,7 @@ const AddClass = () => {
             {errors?.image && errors?.image.message}
           </div>
 
-          <div className="form-control col-span-2">
+          <div className="form-control  ">
             <label className="label">
               <span className="label-text">Instructor Name</span>
             </label>
@@ -119,7 +119,7 @@ const AddClass = () => {
             {errors?.instructorName && errors?.instructorName.message}
           </div>
 
-          <div className="form-control col-span-2">
+          <div className="form-control ">
             <label className="label">
               <span className="label-text">Instructor Email</span>
             </label>
@@ -164,8 +164,8 @@ const AddClass = () => {
             {errors?.price && errors?.price.message}
           </div>
 
-          <div className="form-control col-span-4 mt-6">
-            <button type="submit" className="btn  bg-red-200">
+          <div className="form-control col-span-4 w-11/12 mt-6">
+            <button type="submit" className="btn  bg-black text-white">
               Add Class{" "}
             </button>
           </div>
