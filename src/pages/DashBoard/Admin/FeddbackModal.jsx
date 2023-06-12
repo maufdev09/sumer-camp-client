@@ -43,7 +43,10 @@ const FeddbackModal = ({ selectedClass, handleFeedbackUpdate }) => {
           {errors.feedback && <span>This field is required</span>}
         </div>
         <div className="text-right">
-          <input type="submit" className="btn btn-warning" />
+          <input
+            type="submit"
+            className="btn bg-black text-white hover:bg-slate-700"
+          />
         </div>
       </form>
       <form method="dialog" className="modal-backdrop">

@@ -7,7 +7,7 @@ const EnrolledClass = () => {
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `http://localhost:5000/get-payed-classes/${user.email}`
+      `https://sports-pro-academy-production.up.railway.app/get-payed-classes/${user.email}`
     );
     return res.json();
   });

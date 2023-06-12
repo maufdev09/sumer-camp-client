@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
+import AdminRoute from "../../routs/AdminRoute";
 
 {
   /* <li tabIndex={0}>
@@ -36,7 +37,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link>Instructors</Link>
+        <Link to="instructor">Instructors</Link>
       </li>
       <li>
         <Link to="/classes">Clases</Link>
@@ -99,11 +100,11 @@ const Navbar = () => {
             </div>
           )}
           {user ? (
-            <button className="btn bg-red-200" onClick={handleLogOut}>
+            <button className="btn text-white bg-black" onClick={handleLogOut}>
               LogOUT
             </button>
           ) : (
-            <Link to="/login" className="btn bg-red-200">
+            <Link to="/login" className="btn text-white bg-black">
               login
             </Link>
           )}

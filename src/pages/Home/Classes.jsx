@@ -4,15 +4,17 @@ import { AuthContext } from "../../Providers/AuthProviders";
 
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const Classes = () => {
   const { user, logout } = useContext(AuthContext);
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
-    const res = await fetch(`http://localhost:5000/get-approve-classes`);
+    const res = await fetch(
+      `https://sports-pro-academy-production.up.railway.app/get-approve-classes`
+    );
     return res.json();
   });
-  console.log(classes);
 
   const handleSelectClass = (classItem) => {
     if (!user) {
@@ -31,24 +33,35 @@ const Classes = () => {
       paymentStatus: "",
       paymentDate: "",
     };
-    console.log(selectedClassItem);
 
-    fetch("http://localhost:5000/selected-classitem", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(selectedClassItem),
-    })
+    fetch(
+      "https://sports-pro-academy-production.up.railway.app/selected-classitem",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectedClassItem),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
           toast.success(`Class added in dashboard`);
         }
-        toast.error(`item already added in dashboard`);
       })
       .catch((err) => toast.error(err.message));
   };
+
+  const { data: userdata = [] } = useQuery(["userdata"], async () => {
+    const res = await axios.get(
+      `https://sports-pro-academy-production.up.railway.app/get-user-role/${user.email}`
+    );
+    return res.data;
+  });
+
+  console.log(userdata);
+
   return (
     <div>
       <h3 className="text-center text-2xl font-bold">All Classes</h3>
@@ -84,7 +97,11 @@ const Classes = () => {
                 <div className="card-actions justify-end">
                   <button
                     onClick={() => handleSelectClass(classItem)}
-                    disabled={parseInt(classItem.availableSeats) === 0}
+                    disabled={
+                      parseInt(classItem.availableSeats) === 0 ||
+                      userdata?.role === "admin" ||
+                      userdata?.role === "instructor"
+                    }
                     // TODO: Logged in as admin/instructor DISABLE
                     className="btn bg-slate-900 text-white "
                   >

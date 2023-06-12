@@ -24,7 +24,6 @@ const AddClass = () => {
       instructorName,
       price,
     } = data;
-    console.log(data);
     const formData = new FormData();
     formData.append("image", image[0]);
 
@@ -47,13 +46,16 @@ const AddClass = () => {
             feedback: "",
             totalEnrolledStudent: 0,
           };
-          fetch("http://localhost:5000/add-class", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(classItem),
-          })
+          fetch(
+            "https://sports-pro-academy-production.up.railway.app/add-class",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(classItem),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId) {

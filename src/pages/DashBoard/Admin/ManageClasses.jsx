@@ -6,7 +6,9 @@ import { toast } from "react-hot-toast";
 const ManageClasses = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
-    const res = await fetch("http://localhost:5000/get-classes");
+    const res = await fetch(
+      "https://sports-pro-academy-production.up.railway.app/get-classes"
+    );
     return res.json();
   });
 
@@ -19,16 +21,18 @@ const ManageClasses = () => {
     const cls = {
       feedback,
     };
-    fetch(`http://localhost:5000/update-admin-feedback/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cls),
-    })
+    fetch(
+      `https://sports-pro-academy-production.up.railway.app/update-admin-feedback/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cls),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           toast.success("feed back send success fully");
           reset();
@@ -42,16 +46,18 @@ const ManageClasses = () => {
     const cls = {
       status: "approve",
     };
-    fetch(`http://localhost:5000/update-status/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cls),
-    })
+    fetch(
+      `https://sports-pro-academy-production.up.railway.app/update-status/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cls),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           toast.success(" approve successfully");
           refetch();
@@ -63,16 +69,18 @@ const ManageClasses = () => {
     const cls = {
       status: "deny",
     };
-    fetch(`http://localhost:5000/update-status/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cls),
-    })
+    fetch(
+      `https://sports-pro-academy-production.up.railway.app/update-status/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cls),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           toast.success("deny successfully");
           refetch();

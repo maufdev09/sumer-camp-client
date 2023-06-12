@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const CheckOutFrom = ({ classesitem }) => {
   const price = classesitem?.price;
-  console.log(classesitem);
+
   const { user } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
@@ -18,11 +18,14 @@ const CheckOutFrom = ({ classesitem }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://sports-pro-academy-production.up.railway.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [price]);
@@ -44,11 +47,9 @@ const CheckOutFrom = ({ classesitem }) => {
     });
 
     if (error) {
-      console.log("error", error);
       setCardError(error.message);
     } else {
       setCardError("");
-      // console.log("payment method", paymentMethod);
     }
 
     setProcessing(true);
@@ -66,7 +67,6 @@ const CheckOutFrom = ({ classesitem }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log("payment intent", paymentIntent);
 
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
@@ -85,14 +85,13 @@ const CheckOutFrom = ({ classesitem }) => {
         totalEnrolledStudent: classesitem?.totalEnrolledStudent,
         availableSeats: classesitem?.availableSeats,
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://sports-pro-academy-production.up.railway.app/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data", data);
           if (
             data.insertresult.insertedId &&
             data.deleteResult.deletedCount > 0

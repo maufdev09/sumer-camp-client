@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [showPassord, setShowPassord] = useState(false);
 
   const {
     handleSubmit,
@@ -18,18 +19,15 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const { email, password } = data;
     signIn(email, password)
       .then((res) => {
         const loggedUser = res?.user;
-        console.log(loggedUser);
         toast.success("Login successfully");
         navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.error(err.message);
-        console.log(err);
       });
   };
 
@@ -37,14 +35,14 @@ const Login = () => {
     signInGoogle()
       .then((res) => {
         const loggedUser = res?.user;
-        console.log(loggedUser);
         const savedUser = {
           name: loggedUser.displayName,
           email: loggedUser.email,
           role: "student",
+          imgurl: loggedUser?.photoURL,
         };
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://sports-pro-academy-production.up.railway.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -88,14 +86,25 @@ const Login = () => {
             <label className="label">
               <span className="label-text">Password</span>
             </label>
-            <input
-              type="text"
-              placeholder="password"
-              className="input input-bordered"
-              {...register("password", {
-                required: "Required",
-              })}
-            />
+            <div className="flex">
+              <input
+                type={showPassord ? "text" : "password"}
+                placeholder="password"
+                className="input input-bordered "
+                {...register("password", {
+                  required: "Required",
+                })}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPassord(!showPassord);
+                }}
+                className="btn rounded-s-none"
+              >
+                {showPassord ? "Hide" : "Show"}
+              </button>
+            </div>
             {errors?.password && errors?.password.message}
 
             <label className="label">
@@ -106,17 +115,23 @@ const Login = () => {
           </div>
           <p className="pb-5">
             Dont Have an Account?
-            <Link className="link text-red-300" to="/register">
+            <Link className="link text-blue-600" to="/register">
               Register
             </Link>
           </p>
           <div className="form-control mt-6">
-            <button type="submit" className="btn  bg-red-200">
+            <button
+              type="submit"
+              className="btn text-white hover:bg-slate-700 bg-black"
+            >
               Login
             </button>
           </div>
           <div className="divider">Or</div>
-          <button className="btn bg-red-200" onClick={handleGooglelogin}>
+          <button
+            className="btn  text-white hover:bg-slate-700 bg-black"
+            onClick={handleGooglelogin}
+          >
             {" "}
             <FaGoogle></FaGoogle> Sign with Google
           </button>

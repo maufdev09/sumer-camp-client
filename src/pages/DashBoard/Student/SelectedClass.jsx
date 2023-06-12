@@ -5,19 +5,22 @@ import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 const SelectedClass = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `http://localhost:5000/get-selected-classes/${user.email}`
+      `https://sports-pro-academy-production.up.railway.app/get-selected-classes/${user.email}`
     );
     return res.json();
   });
 
   const handledlt = (id) => {
-    fetch(`http://localhost:5000/dlt-selected-classes/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://sports-pro-academy-production.up.railway.app/dlt-selected-classes/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

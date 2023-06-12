@@ -8,11 +8,10 @@ const MyClass = () => {
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `http://localhost:5000/get-instructor-classes/${user.email}`
+      `https://sports-pro-academy-production.up.railway.app/get-instructor-classes/${user.email}`
     );
     return res.json();
   });
-  console.log(classes);
 
   return (
     <div className="w-full">

@@ -4,7 +4,9 @@ import SectionTitle from "../sectionTitle/SectionTitle";
 const PopularClasses = () => {
   const [sports, setSports] = useState([]);
   useEffect(() => {
-    fetch("sports.json")
+    fetch(
+      "https://sports-pro-academy-production.up.railway.app/get-approve-classes"
+    )
       .then((res) => res.json())
       .then((data) => setSports(data));
   }, []);
@@ -16,27 +18,27 @@ const PopularClasses = () => {
   return (
     <div className="">
       <SectionTitle title={"Our  popular Classes"}></SectionTitle>
-      <div className=" grid grid-cols-3 gap-5 ">
+      <div className=" grid md:grid-cols-3 gap-5 ">
         {sortedSports
           .slice(0, 6)
           .reverse()
           .map((sport) => (
-            <div key={sport.id} className="card bg-base-100 shadow-xl">
-              <figure>
-                <img src={sport.image} alt="Shoes" />
+            <div key={sport._id} className="card bg-slate-200 shadow-xl p-4 ">
+              <figure className=" w-11/12 mx-auto">
+                <img className="w-full" src={sport.imgURL} alt="Shoes" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">{sport.name}</h2>
+                <h2 className="card-title">{sport.className}</h2>
                 {/* <p>{sport.description}</p> */}
                 <p>
                   {" "}
                   <span className="font-semibold">Instructor:</span>{" "}
-                  {sport.instructor}
+                  {sport.instructorName}
                 </p>
                 <p>
                   {" "}
                   <span className="font-semibold">Seats Available: </span>
-                  {sport.seatsAvailable}
+                  {sport.availableSeats}
                 </p>
                 <p>
                   <span className="font-semibold">Price: $ </span>

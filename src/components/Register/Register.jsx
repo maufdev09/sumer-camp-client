@@ -23,8 +23,9 @@ const Register = () => {
         name: name,
         email: email,
         role: "student",
+        imgurl: imgurl,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://sports-pro-academy-production.up.railway.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -40,21 +41,20 @@ const Register = () => {
         });
     });
   };
-  console.log(user);
   const password = watch("password");
 
   const handleGooglelogin = () => {
     signInGoogle()
       .then((res) => {
         const loggedUser = res?.user;
-        console.log(loggedUser);
         const savedUser = {
           name: loggedUser.displayName,
           email: loggedUser.email,
           role: "student",
+          imgurl: loggedUser?.photoURL,
         };
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://sports-pro-academy-production.up.railway.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -182,17 +182,23 @@ const Register = () => {
           </div>
           <p className="pb-5">
             Already have an Account?{" "}
-            <Link className="link text-red-300" to="/login">
+            <Link className="link text-blue-500" to="/login">
               Login
             </Link>
           </p>
           <div className="form-control mt-6">
-            <button type="submit" className="btn  bg-red-200">
+            <button
+              type="submit"
+              className="btn  text-white hover:bg-slate-700 bg-black"
+            >
               Register
             </button>
           </div>
           <div className="divider">Or</div>
-          <button className="btn bg-red-200" onClick={handleGooglelogin}>
+          <button
+            className="btn text-white hover:bg-slate-700 bg-black"
+            onClick={handleGooglelogin}
+          >
             {" "}
             <FaGoogle></FaGoogle> Sign with Google
           </button>
