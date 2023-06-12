@@ -37,6 +37,8 @@ const Register = () => {
           if (data.insertedId) {
             toast.success(`Hello! ${email}! WelCome`);
             navigate("/");
+          } else {
+            toast.error("Already User");
           }
         });
     });
