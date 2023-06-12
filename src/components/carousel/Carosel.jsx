@@ -7,7 +7,7 @@ import img4 from "../../assets/banner/pexels-tim-mossholder-1080882.jpg";
 const Carosel = () => {
   return (
     <Carousel>
-      <div className="  -z-50">
+      <div className="h-[95vh]">
         <img src={img1} className="w-full h-full" />
         <p className="legend">Try Marathon</p>
       </div>
