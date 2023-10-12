@@ -9,14 +9,14 @@ const SelectedClass = () => {
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `https://sports-pro-academy-production.up.railway.app/get-selected-classes/${user.email}`
+      `https://sports-academy-server-zeta.vercel.app/get-selected-classes/${user.email}`
     );
     return res.json();
   });
 
   const handledlt = (id) => {
     fetch(
-      `https://sports-pro-academy-production.up.railway.app/dlt-selected-classes/${id}`,
+      `https://sports-academy-server-zeta.vercel.app/dlt-selected-classes/${id}`,
       {
         method: "DELETE",
       }

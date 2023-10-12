@@ -42,7 +42,7 @@ const Login = () => {
           imgurl: loggedUser?.photoURL,
         };
 
-        fetch("https://sports-pro-academy-production.up.railway.app/users", {
+        fetch("https://sports-academy-server-zeta.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

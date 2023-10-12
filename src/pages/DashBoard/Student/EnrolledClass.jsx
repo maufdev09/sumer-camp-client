@@ -7,7 +7,7 @@ const EnrolledClass = () => {
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `https://sports-pro-academy-production.up.railway.app/get-payed-classes/${user.email}`
+      `https://sports-academy-server-zeta.vercel.app/get-payed-classes/${user.email}`
     );
     return res.json();
   });

@@ -8,7 +8,7 @@ const MyClass = () => {
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `https://sports-pro-academy-production.up.railway.app/get-instructor-classes/${user.email}`
+      `https://sports-academy-server-zeta.vercel.app/get-instructor-classes/${user.email}`
     );
     return res.json();
   });

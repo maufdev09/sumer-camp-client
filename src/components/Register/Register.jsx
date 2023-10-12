@@ -25,7 +25,7 @@ const Register = () => {
         role: "student",
         imgurl: imgurl,
       };
-      fetch("https://sports-pro-academy-production.up.railway.app/users", {
+      fetch("https://sports-academy-server-zeta.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -56,7 +56,7 @@ const Register = () => {
           imgurl: loggedUser?.photoURL,
         };
 
-        fetch("https://sports-pro-academy-production.up.railway.app/users", {
+        fetch("https://sports-academy-server-zeta.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

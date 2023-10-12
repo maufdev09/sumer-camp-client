@@ -14,7 +14,7 @@ const DashBoard = () => {
 
   const { data: userdata = [] } = useQuery(["userdata"], async () => {
     const res = await axios.get(
-      `https://sports-pro-academy-production.up.railway.app/get-user-role/${user.email}`
+      `https://sports-academy-server-zeta.vercel.app/get-user-role/${user.email}`
     );
     return res.data;
   });

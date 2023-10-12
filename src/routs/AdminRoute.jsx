@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
 
   const { data: isAdmin = [], isLoading } = useQuery(["isAdmin"], async () => {
     const res = await axios.get(
-      `https://sports-pro-academy-production.up.railway.app/isAdmin/${user.email}`
+      `https://sports-academy-server-zeta.vercel.app/isAdmin/${user.email}`
     );
     return res.data;
   });

@@ -51,7 +51,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar " style={{background:"#f6f9fc"}}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -78,7 +78,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">
-            <img className="w-52" src={blackimg} alt="" />
+            <img className="w-28 md:w-52" src={blackimg} alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -89,7 +89,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {user && (
             <div
-              className="w-8 mx-5 tooltip tooltip-left"
+              className="w-8 mx-5 hidden md:visible tooltip tooltip-left"
               data-tip={user.displayName}
             >
               {user.photoURL ? (

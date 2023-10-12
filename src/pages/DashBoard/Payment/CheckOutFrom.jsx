@@ -19,7 +19,7 @@ const CheckOutFrom = ({ classesitem }) => {
 
   useEffect(() => {
     fetch(
-      "https://sports-pro-academy-production.up.railway.app/create-payment-intent",
+      `https://sports-academy-server-zeta.vercel.app/create-payment-intent`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ const CheckOutFrom = ({ classesitem }) => {
         totalEnrolledStudent: classesitem?.totalEnrolledStudent,
         availableSeats: classesitem?.availableSeats,
       };
-      fetch("https://sports-pro-academy-production.up.railway.app/payments", {
+      fetch(`https://sports-academy-server-zeta.vercel.app/payments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payment),

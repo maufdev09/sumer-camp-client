@@ -8,9 +8,7 @@ const Fotter = () => {
         <div className="">
           <img className="w-44" src={whiteLogo} alt="" />
           <p className="">
-            ACME Industries Ltd.
-            <br />
-            Providing reliable tech since 1992
+          Welcome to SportPro Academy's Summer Camp, where young athletes transform into champions! Our camp offers a dynamic and immersive training experience, focusing on honing individual sports skills, fostering teamwork, and nurturing a winning mentality. Under the guidance of expert coaches, participants will engage in rigorous training sessions, friendly competitions, and skill-enhancing drills tailored to their specific sport of interest.
           </p>
         </div>
         <div>

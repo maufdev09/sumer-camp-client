@@ -12,7 +12,7 @@ const StudentRoute = ({ children }) => {
     ["isInstructor"],
     async () => {
       const res = await axios.get(
-        `https://sports-pro-academy-production.up.railway.app/isStudent/${user.email}`
+        `https://sports-academy-server-zeta.vercel.app/isStudent/${user.email}`
       );
       return res.data;
     }

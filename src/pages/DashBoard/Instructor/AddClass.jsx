@@ -47,7 +47,7 @@ const AddClass = () => {
             totalEnrolledStudent: 0,
           };
           fetch(
-            "https://sports-pro-academy-production.up.railway.app/add-class",
+            `https://sports-academy-server-zeta.vercel.app/add-class`,
             {
               method: "POST",
               headers: {

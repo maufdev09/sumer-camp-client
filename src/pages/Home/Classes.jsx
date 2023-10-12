@@ -11,7 +11,7 @@ const Classes = () => {
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      `https://sports-pro-academy-production.up.railway.app/get-approve-classes`
+      `https://sports-academy-server-zeta.vercel.app/get-approve-classes`
     );
     return res.json();
   });
@@ -35,7 +35,7 @@ const Classes = () => {
     };
 
     fetch(
-      "https://sports-pro-academy-production.up.railway.app/selected-classitem",
+      `https://sports-academy-server-zeta.vercel.app/selected-classitem`,
       {
         method: "POST",
         headers: {
@@ -55,7 +55,7 @@ const Classes = () => {
 
   const { data: userdata = [] } = useQuery(["userdata"], async () => {
     const res = await axios.get(
-      `https://sports-pro-academy-production.up.railway.app/get-user-role/${user.email}`
+      `https://sports-academy-server-zeta.vercel.app/get-user-role/${user.email}`
     );
     return res.data;
   });
@@ -63,9 +63,28 @@ const Classes = () => {
   console.log(userdata);
 
   return (
-    <div>
-      <h3 className="text-center text-2xl font-bold">All Classes</h3>
-      <div className="grid grid-cols-3 gap-5">
+    <div className="mb-16">
+ <div className="mx-auto w-full max-w-3xl mt-16">
+ <div className="text-center">
+            <h2 className="text-3xl font-semibold md:text-5xl">
+              Our All{" "}
+              <span
+                className="bg-cover bg-center bg-no-repeat px-4 text-white"
+                style={{
+                  backgroundImage:
+                    "url('https://assets.website-files.com/63904f663019b0d8edf8d57c/639156ce1c70c97aeb755c8a_Rectangle%2010%20(1).svg')",
+                }}
+              >
+                classes
+              </span>
+            </h2>
+            <div className="mx-auto mb-8 mt-4 max-w-[528px] md:mb-12 lg:mb-16">
+              <p className="text-[#636262]">
+                Lorem ipsum dolor sit amet elit ut aliquam
+              </p>
+            </div>
+          </div>
+        </div>      <div className="grid grid-cols-1 mx-5 md:grid-cols-4 gap-5">
         {classes.map((classItem) => (
           <div key={classItem._id}>
             <div

@@ -7,14 +7,14 @@ const ManageUsers = () => {
   // const [users, setUsers] = useState([]);
 
   // useEffect(() => {
-  //   fetch("https://sports-pro-academy-production.up.railway.app/get-user")
+  //   fetch(`https://sports-academy-server-zeta.vercel.app/get-user`)
   //     .then((res) => res.json())
   //     .then((data) => setUsers(data));
   // }, []);
 
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch(
-      "https://sports-pro-academy-production.up.railway.app/get-user"
+      `https://sports-academy-server-zeta.vercel.app/get-user`
     );
     return res.json();
   });
@@ -25,7 +25,7 @@ const ManageUsers = () => {
     };
 
     fetch(
-      `https://sports-pro-academy-production.up.railway.app/update-user-role/${id}`,
+      `https://sports-academy-server-zeta.vercel.app/update-user-role/${id}`,
       {
         method: "PUT",
         headers: {
@@ -49,7 +49,7 @@ const ManageUsers = () => {
     };
 
     fetch(
-      `https://sports-pro-academy-production.up.railway.app/update-user-role/${id}`,
+      `https://sports-academy-server-zeta.vercel.app/update-user-role/${id}`,
       {
         method: "PUT",
         headers: {

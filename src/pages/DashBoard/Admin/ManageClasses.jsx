@@ -7,7 +7,7 @@ const ManageClasses = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(
-      "https://sports-pro-academy-production.up.railway.app/get-classes"
+      `https://sports-academy-server-zeta.vercel.app/get-classes`
     );
     return res.json();
   });
@@ -22,7 +22,7 @@ const ManageClasses = () => {
       feedback,
     };
     fetch(
-      `https://sports-pro-academy-production.up.railway.app/update-admin-feedback/${id}`,
+      `https://sports-academy-server-zeta.vercel.app/update-admin-feedback/${id}`,
       {
         method: "PUT",
         headers: {
@@ -47,7 +47,7 @@ const ManageClasses = () => {
       status: "approve",
     };
     fetch(
-      `https://sports-pro-academy-production.up.railway.app/update-status/${id}`,
+      `https://sports-academy-server-zeta.vercel.app/update-status/${id}`,
       {
         method: "PUT",
         headers: {
@@ -70,7 +70,7 @@ const ManageClasses = () => {
       status: "deny",
     };
     fetch(
-      `https://sports-pro-academy-production.up.railway.app/update-status/${id}`,
+      `https://sports-academy-server-zeta.vercel.app/update-status/${id}`,
       {
         method: "PUT",
         headers: {
